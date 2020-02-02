@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour
             {
                 Debug.Log("AAAAAAAAAAAAAAAA");
                 target.takeDamage(damage);
+                Score.score++;
             }//add visual effect for destroy here. or actually in target. 
         }
         if(Physics.Raycast(g.transform.position,g.transform.forward, out hit, range)) {
@@ -48,6 +49,7 @@ public class Gun : MonoBehaviour
             {
                 Debug.Log("AAAAAAAAAAAAAAAA");
                 target.takeDamage(damage);
+                Score.score++;
             }//add visual effect for destroy here. or actually in target. 
         }
     }
