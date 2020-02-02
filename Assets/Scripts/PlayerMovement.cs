@@ -23,11 +23,11 @@ public class PlayerMovement : MonoBehaviour {
 	//int speed = 0;
 	//float smooth;
 	//var test : Vector3 = Vector3(6, 0, 0);
-    void moveLeft(){
+    public void moveLeft(){
     	player.transform.position = new Vector3(player.position.x - 6, player.position.y, player.position.z);
     }
 
-    void moveRight(){
+    public void moveRight(){
     	player.transform.position = new Vector3(player.position.x + 6, player.position.y, player.position.z);
     }
 
