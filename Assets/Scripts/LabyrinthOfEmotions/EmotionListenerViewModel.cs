@@ -17,6 +17,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
 	public Image SouthEmoImg;
 	public Image WestEmoImg;
 
+	public string lastColor; //to keep track to reset. 
 
 
 
@@ -61,7 +62,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		//Debug.Log("Got face results, faces: "+ faces.Count);
 
 		if(faces.Count > 0) {
-			strongestEmoNav = new EmoNav ("Nothing", 0, "Sprites/angryIcon", Color.gray);
+			strongestEmoNav = new EmoNav ("Nothing", 0, "Sprites/angryIcon", Color.gray); //gray stuff
 
 			faces[0].Emotions.TryGetValue (Emotions.Joy, out emotionDict [(int)emotionEnum.Joy].valence);
 			faces[0].Emotions.TryGetValue (Emotions.Sadness, out emotionDict [(int)emotionEnum.Sadness].valence);
@@ -88,29 +89,48 @@ public class EmotionListenerViewModel : ImageResultsListener {
 	}
 
 	public void HighlightAndEvent(string emotion, Color emoColor) {
-
+        if (lastColor == "")
+        {
+			lastColor = emotion;
+        }
+        else if (lastColor == "Joy")
+        {
+			NorthEmoImg.color = Color.yellow;
+        }
+        else if (lastColor == "Sadness")
+        {
+			SouthEmoImg.color = Color.yellow;
+        }
+        else if (lastColor == "Surprise")
+        {
+			WestEmoImg.color = Color.yellow;
+        }
+        else if (lastColor == "Disgust")
+        {
+			EastEmoImg.color = Color.yellow;
+        } //bad solution but it works. 
 		switch(emotion) {
 		case "Joy":
 			NorthEmoImg.color = Color.green;
-	
+	        lastColor = emotion;
 			Debug.Log("Happiness!");
 			OnNorthEmo(emotion);
 			break;
 		case "Sadness":
-			SouthEmoText.color = Color.green;
-	
+			SouthEmoImg.color = Color.green;
+			lastColor = emotion;
 			Debug.Log("Sadness!");
 			OnSouthEmo(emotion);
 			break;
 		case "Surprise":
-			WestEmoText.color = Color.green;
-		
+			WestEmoImg.color = Color.green;
+				lastColor = emotion;
 			Debug.Log("Surprise!");
 			OnWestEmo(emotion);
 			break;
 		case "Disgust":
-			WestEmoText.color = Color.green;
-		
+			EastEmoImg.color = Color.green;
+				lastColor = emotion;
 			Debug.Log("Disgust!");
 			OnWestEmo(emotion);
 			break;
