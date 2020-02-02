@@ -53,9 +53,11 @@ public class Spawner : MonoBehaviour
 	    			GameObject clone = Instantiate (enemies[randEnemy], spawnPosition + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
 	    			//FACERRRR
 	    			count--;
+	    			Destroy (clone, 5.0f);
     			}
     			Vector3 facspot = new Vector3(GetRandomPosition(), 4, 1);
 	    		GameObject face = Instantiate (facers[0], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
+	    		Destroy (face, 5.0f);
     		}
 
     		if(randEnemy == 1){

@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour {
 	public static bool uniGrounded;
 
 	public Transform player;
+	public int counter = 0; //added 
 
-	public float forwardForce = 6000f;	// Variable that determines the forward force
+	public float forwardForce = 2000f;	// Variable that determines the forward force
 	//public float sidewaysForce = 500f;  // Variable that determines the sideways force
 
    void OnCollisionEnter(Collision col)
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             isGrounded = true;
         }
+
+
     }
 
 	//int speed = 0;
@@ -39,6 +42,11 @@ public class PlayerMovement : MonoBehaviour {
 		//smooth = speed * Time.deltaTime;
 		uniGrounded = isGrounded;
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+		counter++;
+        if (counter%300 == 0)//added
+        {
+			forwardForce += 500f;//added
+        }
 
 		if (Input.GetKeyDown("d"))	// If the player is pressing the "d" key
 		{
@@ -75,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown("s") && isGrounded)  // If the player is pressing the "a" key
 		{
 			// Add a force to jump
-            rb.AddForce(new Vector3(0, -10, 0) * 5f, ForceMode.Impulse);
+            rb.AddForce(new Vector3(0, -10, 0) * 7f, ForceMode.Impulse);
             rb.AddForce(0, 0, forwardForce * Time.deltaTime);
             //rb.mass = 10f;
             //isGrounded = false;

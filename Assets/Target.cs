@@ -69,6 +69,7 @@ public class Target : MonoBehaviour
                 //add explosion force to this body with given parameters
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
             }
+
         }
     }
 }

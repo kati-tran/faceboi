@@ -89,7 +89,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
         }
         else if (lastColor == "Joy")
         {
-			NorthEmoImg.color = Color.yellow;
+			NorthEmoImg.color = Color.cyan;
         }
         else if (lastColor == "Sadness")
         {
@@ -105,7 +105,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
         } //bad solution but it works. 
 		switch(emotion) {
 		case "Joy":
-			NorthEmoImg.color = Color.green; //ye
+			NorthEmoImg.color = Color.yellow; //ye
 	        lastColor = emotion;
 			Debug.Log("Happiness!");
 			OnNorthEmo(emotion);
