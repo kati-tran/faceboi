@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     public bool stop;
 
     int randEnemy;
+    int randFace;
 
     // Start is called before the first frame update
     int step = 6;
@@ -42,6 +43,7 @@ public class Spawner : MonoBehaviour
 
     	while(!stop){
     		randEnemy = Random.Range(0, 5);
+    		randFace = Random.Range(0,2);
     		Debug.Log(randEnemy);
 
     		if(randEnemy == 0){
@@ -54,7 +56,7 @@ public class Spawner : MonoBehaviour
 	    			count--;
     			}
     			Vector3 facspot = new Vector3(GetRandomPosition(), 4, 1);
-	    		GameObject face = Instantiate (facers[0], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
+	    		GameObject face = Instantiate (facers[randFace], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
     		}
 
     		if(randEnemy == 1){
@@ -73,7 +75,7 @@ public class Spawner : MonoBehaviour
 				}
 
 				Vector3 facspot = new Vector3(facc, 4, 1);
-				GameObject face = Instantiate (facers[0], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);  			
+				GameObject face = Instantiate (facers[randFace], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);  			
     			Destroy (clone, 5.0f);
     		}
 
@@ -90,7 +92,7 @@ public class Spawner : MonoBehaviour
     			GameObject clone2 = Instantiate (enemies[randEnemy], spawnPosition2 + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
 
 				Vector3 facspot = new Vector3(0, 4, 0);
-				GameObject face = Instantiate (facers[0], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
+				GameObject face = Instantiate (facers[randFace], facspot + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
 
     			Destroy (clone, 5.0f);
     			Destroy (clone2, 5.0f);

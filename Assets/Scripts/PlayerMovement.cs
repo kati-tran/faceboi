@@ -19,17 +19,23 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+	//int speed = 0;
+	//float smooth;
+	//var test : Vector3 = Vector3(6, 0, 0);
+
 	// We marked this as "Fixed"Update because we
 	// are using it to mess with physics.
 	void Update ()
 	{
 		// Add a forward force
+		//smooth = speed * Time.deltaTime;
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
 		if (Input.GetKeyDown("d"))	// If the player is pressing the "d" key
 		{
 			// Add a force to the right
 			player.transform.position = new Vector3(player.position.x + 6, player.position.y, player.position.z);
+			//transform.Translate (transform.position + test.position * smooth);
 			//rb.AddForce(new Vector3(12, 0, 0), ForceMode.Impulse);
 			//Vector3 newPos = new Vector3(player.position.x + 6, player.position.y, player.position.z);
          	//transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 40f);
