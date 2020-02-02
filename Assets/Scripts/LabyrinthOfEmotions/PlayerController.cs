@@ -7,8 +7,12 @@ public class PlayerController : MonoBehaviour
 	//public GUIText countText;
 	//public GUIText winText;
 	//private int count;
+	
+ 
+
+
 	private int numberOfGameObjects;
-	public AudioClip buzzAudio;
+
 
 
 	void Awake()
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
 		EventController.Instance.UnSubscribe<GoSouthEvent>(GoSouth);*/
 	}
 
+
 	void GoWest(GoWestEvent eventTest) {
 		Vector3 movement = new Vector3(-1.0f, 0.0f, 0.0f);
 
@@ -55,9 +60,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void GoNorth(GoNorthEvent eventTest) {
-		Vector3 movement = new Vector3(0.0f, 0.0f, 1.0f);
-
-		GetComponent<Rigidbody>().AddForce (movement * speed * Time.deltaTime);
+		GetComponent<Gun>().Shoot();
 	}
 
 	void GoSouth(GoSouthEvent eventTest) {

@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         //Vector3 dir = new Vector3(0, 4, 0);
         //double z = g.transform.position.z;

@@ -187,7 +187,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
 
 	public void OnNorthEmo(string emotion) {
 		Debug.Log("HAPPINESS");
-		//EventController.Instance.Publish (new GoNorthEvent(emotion));
+		EventController.Instance.Publish (new GoNorthEvent(emotion));
 
 		///^^^^^^^^^^^^^^uncomment these
 		//SO BASICALLY THE EVENTCONTROLLER GIVES THE GONORTHEVENT WHICH IM NOT
