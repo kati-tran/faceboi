@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			// Add a force to jump
             rb.AddForce(new Vector3(0, 10, 0) * 3f, ForceMode.Impulse);
+            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
             //rb.mass = 10f;
             isGrounded = false;
             //rb.AddForce(new Vector3(0, -10, 0), ForceMode.Impulse);

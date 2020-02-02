@@ -42,6 +42,7 @@ public class Spawner : MonoBehaviour
 
     	while(!stop){
     		randEnemy = Random.Range(0, 5);
+    		Debug.Log(randEnemy);
 
     		if(randEnemy == 0){
     			int count = Random.Range(1,5);
