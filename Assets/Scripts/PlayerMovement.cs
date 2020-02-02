@@ -4,27 +4,59 @@ public class PlayerMovement : MonoBehaviour {
 
 	// This is a reference to the Rigidbody component called "rb"
 	public Rigidbody rb;
+	public bool isGrounded;
+
+	public Transform player;
 
 	public float forwardForce = 2000f;	// Variable that determines the forward force
-	public float sidewaysForce = 500f;  // Variable that determines the sideways force
+	//public float sidewaysForce = 500f;  // Variable that determines the sideways force
+
+   void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == ("Ground") && isGrounded == false)
+        {
+            isGrounded = true;
+        }
+    }
 
 	// We marked this as "Fixed"Update because we
 	// are using it to mess with physics.
-	void FixedUpdate ()
+	void Update ()
 	{
 		// Add a forward force
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-		if (Input.GetKey("d"))	// If the player is pressing the "d" key
+		if (Input.GetKeyDown("d"))	// If the player is pressing the "d" key
 		{
 			// Add a force to the right
-			rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+			player.transform.position = new Vector3(player.position.x + 6, player.position.y, player.position.z);
+			//rb.AddForce(new Vector3(12, 0, 0), ForceMode.Impulse);
+			//Vector3 newPos = new Vector3(player.position.x + 6, player.position.y, player.position.z);
+         	//transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 40f);
+			Debug.Log(player.position);
 		}
 
-		if (Input.GetKey("a"))  // If the player is pressing the "a" key
+		if (Input.GetKeyDown("a"))  // If the player is pressing the "a" key
 		{
 			// Add a force to the left
-			rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+			player.transform.position = new Vector3(player.position.x - 6, player.position.y, player.position.z);
+			//rb.AddForce(new Vector3(-12, 0, 0), ForceMode.Impulse);
+			//Vector3 newPos = new Vector3(player.position.x - 6, player.position.y, player.position.z);
+         	//transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 40f);
+			Debug.Log(player.position);
+		}
+
+		if (Input.GetKeyDown("w") && isGrounded)  // If the player is pressing the "a" key
+		{
+			// Add a force to jump
+            rb.AddForce(new Vector3(0, 10, 0) * 3f, ForceMode.Impulse);
+            //rb.mass = 10f;
+            isGrounded = false;
+            //rb.AddForce(new Vector3(0, -10, 0), ForceMode.Impulse);
+		}
+
+		if(isGrounded == false){
+			rb.AddForce(new Vector3(0,-1,0), ForceMode.Impulse);
 		}
 
 		if (rb.position.y < -1f)
