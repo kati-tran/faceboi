@@ -48,9 +48,7 @@ public class PlayerController : MonoBehaviour
 
 
 	void GoWest(GoWestEvent eventTest) {
-		Vector3 movement = new Vector3(-1.0f, 0.0f, 0.0f);
-
-		GetComponent<Rigidbody>().AddForce (movement * speed * Time.deltaTime);
+		GetComponent<Gun>().Shoot("surprise");
 	}
 
 	void GoEast(GoEastEvent eventTest) {
@@ -60,7 +58,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void GoNorth(GoNorthEvent eventTest) {
-		GetComponent<Gun>().Shoot();
+		GetComponent<Gun>().Shoot("joy");
 	}
 
 	void GoSouth(GoSouthEvent eventTest) {
