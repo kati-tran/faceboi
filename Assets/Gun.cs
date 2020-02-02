@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))//"shooting"
         {
-            Shoot();
+            Shoot("joy");
         }
     }
 
