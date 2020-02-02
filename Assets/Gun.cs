@@ -17,10 +17,17 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(g.transform.position,g.transform.forward, out hit, range))//condition for if in front of block
+        //Vector3 dir = new Vector3(0, 4, 0);
+        //double z = g.transform.position.z;
+        RaycastHit hit; //g.transform.forward
+        if (Physics.Raycast(g.transform.position + g.transform.up*5.7f,g.transform.forward, out hit, range))//condition for if in front of block
         {
+            //(0.0, 5.7, )
+            //Debug.Log(g.transform.up * 5.7f);
+            //Debug.Log(g.transform.position.z);
+            Debug.Log(g.transform.position);
             Debug.Log(hit.transform.name);
+            //Debug.Log("should shoot?");
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
