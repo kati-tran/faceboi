@@ -22,14 +22,14 @@ public class EmotionListenerViewModel : ImageResultsListener {
 
 
 	public FeaturePoint[] featurePointsList;
-	public int[] nextNavArray = new int[4];
-	public int[] currNavArray = new int[4];
+	public int[] nextNavArray = new int[2];
+	public int[] currNavArray = new int[2];
 
 	public EmoNav strongestEmoNav;
 	private int emoChangeCount = 0;
 	private int emoChangeInterval = 15;
 
-	private enum emotionEnum {Joy, Sadness, Disgust, Suprise};
+	private enum emotionEnum {Joy, Suprise};
 	Dictionary<int, EmoNav> emotionDict = new Dictionary<int, EmoNav>();
 
 	public EmotionListenerViewModel() {
@@ -41,10 +41,10 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		Debug.Log("Starting");
 		
 
-		emotionDict.Add((int)emotionEnum.Joy, new EmoNav ("Joy", 0, "Sprites/joyIcon", Color.green));
-		emotionDict.Add((int)emotionEnum.Sadness, new EmoNav ("Sadness", 0, "Sprites/sadIcon", Color.blue));
-		emotionDict.Add((int)emotionEnum.Disgust, new EmoNav ("Disgust", 0,  "Sprites/DisgustIcon", Color.red));
-		emotionDict.Add((int)emotionEnum.Suprise, new EmoNav ("Suprise", 0,  "Sprites/supriseIcon", Color.yellow));
+		emotionDict.Add((int)emotionEnum.Joy, new EmoNav ("Joy", 0, "Resources/joy", Color.green));
+		//emotionDict.Add((int)emotionEnum.Sadness, new EmoNav ("Sadness", 0, "Sprites/sadIcon", Color.blue));
+		//emotionDict.Add((int)emotionEnum.Disgust, new EmoNav ("Disgust", 0,  "Sprites/DisgustIcon", Color.red));
+		emotionDict.Add((int)emotionEnum.Suprise, new EmoNav ("Surprise", 0,  "Resources/surprised", Color.yellow));
 		InvokeRepeating ("UpdateEmoNav", 0f, 15f);
 		//InvokeRepeating ("UpdateEmoChangeCount", 0f, 1f);
 		//UpdateEmoNav();
@@ -65,18 +65,12 @@ public class EmotionListenerViewModel : ImageResultsListener {
 			strongestEmoNav = new EmoNav ("Nothing", 0, "Sprites/angryIcon", Color.gray); //gray stuff
 
 			faces[0].Emotions.TryGetValue (Emotions.Joy, out emotionDict [(int)emotionEnum.Joy].valence);
-			faces[0].Emotions.TryGetValue (Emotions.Sadness, out emotionDict [(int)emotionEnum.Sadness].valence);
-			faces[0].Emotions.TryGetValue (Emotions.Disgust, out emotionDict [(int)emotionEnum.Disgust].valence);
+			// faces[0].Emotions.TryGetValue (Emotions.Sadness, out emotionDict [(int)emotionEnum.Sadness].valence);
+			// faces[0].Emotions.TryGetValue (Emotions.Disgust, out emotionDict [(int)emotionEnum.Disgust].valence);
 			faces[0].Emotions.TryGetValue (Emotions.Surprise, out emotionDict [(int)emotionEnum.Suprise].valence);
 
 			if (emotionDict [(int)emotionEnum.Joy].valence > strongestEmoNav.valence) {
 				strongestEmoNav = emotionDict [(int)emotionEnum.Joy];
-			}
-			if (emotionDict[(int)emotionEnum.Disgust].valence > strongestEmoNav.valence) {
-				strongestEmoNav = emotionDict [(int)emotionEnum.Disgust];
-			}
-			if (emotionDict [(int)emotionEnum.Sadness].valence > strongestEmoNav.valence) {
-				strongestEmoNav = emotionDict [(int)emotionEnum.Sadness];
 			}
 			if (emotionDict [(int)emotionEnum.Suprise].valence > strongestEmoNav.valence) {
 				strongestEmoNav = emotionDict [(int)emotionEnum.Suprise];
@@ -116,24 +110,13 @@ public class EmotionListenerViewModel : ImageResultsListener {
 			Debug.Log("Happiness!");
 			OnNorthEmo(emotion);
 			break;
-		case "Sadness":
-			SouthEmoImg.color = Color.green;
-			lastColor = emotion;
-			Debug.Log("Sadness!");
-			OnSouthEmo(emotion);
-			break;
 		case "Surprise":
 			WestEmoImg.color = Color.green;
 				lastColor = emotion;
 			Debug.Log("Surprise!");
 			OnWestEmo(emotion);
 			break;
-		case "Disgust":
-			EastEmoImg.color = Color.green;
-				lastColor = emotion;
-			Debug.Log("Disgust!");
-			OnWestEmo(emotion);
-			break;
+	
 		default:
 			break;
 		}
@@ -154,8 +137,8 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		
 		nextNavArray [0] = 0;
 		nextNavArray [1] = 1;
-		nextNavArray [2] = 2;
-		nextNavArray [3] = 3;
+		// nextNavArray [2] = 2;
+		// nextNavArray [3] = 3;
 
 		emotionDict [nextNavArray [0]].name = "Joy";
 		NorthEmoImg.color = Color.grey;
@@ -163,22 +146,22 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		NorthEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [0]].sprite);
 	
 
-		emotionDict [nextNavArray [1]].name = "Sadness";
+		emotionDict [nextNavArray [1]].name = "Surprise";
 		NorthEmoImg.color = Color.grey;
 		EastEmoText.text  = emotionDict [nextNavArray [1]].name;
 		EastEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [1]].sprite);
 
 
-		emotionDict [nextNavArray [2]].name  = "Disgust";
-		NorthEmoImg.color = Color.grey;
-		SouthEmoText.text  = emotionDict [nextNavArray [2]].name;
-		SouthEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [2]].sprite);
+		// emotionDict [nextNavArray [2]].name  = "Disgust";
+		// NorthEmoImg.color = Color.grey;
+		// SouthEmoText.text  = emotionDict [nextNavArray [2]].name;
+		// SouthEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [2]].sprite);
 
 
-		emotionDict [nextNavArray [3]].name  = "Surprise";
-		NorthEmoImg.color = Color.grey;
-		WestEmoText.text  = emotionDict [nextNavArray [3]].name;
-		WestEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [3]].sprite);
+		// emotionDict [nextNavArray [3]].name  = "Surprise";
+		// NorthEmoImg.color = Color.grey;
+		// WestEmoText.text  = emotionDict [nextNavArray [3]].name;
+		// WestEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [3]].sprite);
 		
 	}
 
@@ -200,16 +183,6 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		//also make the color change accordingly idk what the fuck
 	}
 
-
-	public void OnEastEmo(string emotion) {
-		Debug.Log("SADNESS");
-		//EventController.Instance.Publish (new GoEastEvent(emotion));
-	}
-
-	public void OnSouthEmo(string emotion) {
-		Debug.Log("SURPRISE");
-		//EventController.Instance.Publish (new GoSouthEvent(emotion));
-	}
 
 	public void OnWestEmo(string emotion) {
 		Debug.Log("SURPRISE");
