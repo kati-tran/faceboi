@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
     public float damage = 1000f;
     public float range = 100f; //how far it can shoot in one direction. 
     // Start is called be
-    public GameObject g;
+    public GameObject g; //is the player. 
      void Update()
     {
         if (Input.GetButtonDown("Fire1"))//"shooting"
