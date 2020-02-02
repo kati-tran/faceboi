@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void Shoot(string emotion)
     {
         //Vector3 dir = new Vector3(0, 4, 0);
         //double z = g.transform.position.z;
@@ -29,10 +29,16 @@ public class Gun : MonoBehaviour
             Debug.Log(hit.transform.name);
             //Debug.Log("should shoot?");
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+
+     
+            // destroys it if its that emotion
+            if (target != null && hit.transform.gameObject.tag == emotion)
             {
+                Debug.Log("AAAAAAAAAAAAAAAA");
                 target.takeDamage(damage);
             }//add visual effect for destroy here. or actually in target. 
         }
     }
+
+
 }
