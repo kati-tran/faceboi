@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
     			int count = Random.Range(1,5);
     			while(count != 0){
 	    			int test = GetRandomPosition();
-	    			Vector3 spawnPosition = new Vector3 (test, 4, Random.Range(-10,20));
+	    			Vector3 spawnPosition = new Vector3 (test, 8, Random.Range(-10,20));
 	    			GameObject clone = Instantiate (enemies[randEnemy], spawnPosition + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
 	    			//FACERRRR
 	    			count--;
@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
 
     		if(randEnemy == 1){
     			int negThreeorThree = Random.Range(0, 2) == 0 ? -3 : 3;
-    			Vector3 spawnPosition = new Vector3(negThreeorThree, 4, 1);
+    			Vector3 spawnPosition = new Vector3(negThreeorThree, 8, 1);
 				GameObject clone = Instantiate (enemies[randEnemy], spawnPosition + transform.TransformPoint (0,0,0), gameObject.transform.rotation); 
 
 				//facerrrr 
@@ -85,8 +85,8 @@ public class Spawner : MonoBehaviour
     		}
 
     		if(randEnemy == 3){
-    			Vector3 spawnPosition = new Vector3(-9, 4, 0);
-    			Vector3 spawnPosition2 = new Vector3(9, 4, 0);
+    			Vector3 spawnPosition = new Vector3(-9, 8, 0);
+    			Vector3 spawnPosition2 = new Vector3(9, 8, 0);
     			GameObject clone = Instantiate (enemies[randEnemy], spawnPosition + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
     			GameObject clone2 = Instantiate (enemies[randEnemy], spawnPosition2 + transform.TransformPoint (0,0,0), gameObject.transform.rotation);
 

@@ -44,7 +44,7 @@ public class EmotionListenerViewModel : ImageResultsListener {
 		emotionDict.Add((int)emotionEnum.Joy, new EmoNav ("Joy", 0, "Resources/joy", Color.green));
 		//emotionDict.Add((int)emotionEnum.Sadness, new EmoNav ("Sadness", 0, "Sprites/sadIcon", Color.blue));
 		//emotionDict.Add((int)emotionEnum.Disgust, new EmoNav ("Disgust", 0,  "Sprites/DisgustIcon", Color.red));
-		emotionDict.Add((int)emotionEnum.Suprise, new EmoNav ("Surprise", 0,  "Resources/surprised", Color.yellow));
+		emotionDict.Add((int)emotionEnum.Suprise, new EmoNav ("Surprise", 0,  "Resources/surprised", Color.black));
 		InvokeRepeating ("UpdateEmoNav", 0f, 15f);
 		//InvokeRepeating ("UpdateEmoChangeCount", 0f, 1f);
 		//UpdateEmoNav();
@@ -105,14 +105,14 @@ public class EmotionListenerViewModel : ImageResultsListener {
         } //bad solution but it works. 
 		switch(emotion) {
 		case "Joy":
-			NorthEmoImg.color = Color.green;
+			NorthEmoImg.color = Color.green; //ye
 	        lastColor = emotion;
 			Debug.Log("Happiness!");
 			OnNorthEmo(emotion);
 			break;
 		case "Surprise":
-			WestEmoImg.color = Color.green;
-				lastColor = emotion;
+			SouthEmoImg.color = Color.green; //colorgreen
+			lastColor = emotion;
 			Debug.Log("Surprise!");
 			OnWestEmo(emotion);
 			break;
@@ -142,8 +142,8 @@ public class EmotionListenerViewModel : ImageResultsListener {
 
 		emotionDict [nextNavArray [0]].name = "Joy";
 		NorthEmoImg.color = Color.grey;
-		NorthEmoText.text = emotionDict [nextNavArray [0]].name;
-		NorthEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [0]].sprite);
+		EastEmoText.text = emotionDict [nextNavArray [0]].name;
+		SouthEmoImg.sprite = Resources.Load<Sprite> (emotionDict [nextNavArray [0]].sprite); //<- changed the sprite. 
 	
 
 		emotionDict [nextNavArray [1]].name = "Surprise";
