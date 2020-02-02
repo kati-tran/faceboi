@@ -4,7 +4,7 @@ public class SpawnerMove : MonoBehaviour
 {
 	public Transform player;	// A variable that stores a reference to our Player
 	//public Vector3 offset;		// A variable that allows us to offset the position (x, y, z)
-	public float spawnerDistance = 100f;
+	public float spawnerDistance = 200f;
 	
 	// Update is called once per frame
 	void Update () {

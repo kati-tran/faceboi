@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public Transform player;
 
-	public float forwardForce = 2000f;	// Variable that determines the forward force
+	public float forwardForce = 6000f;	// Variable that determines the forward force
 	//public float sidewaysForce = 500f;  // Variable that determines the sideways force
 
    void OnCollisionEnter(Collision col)
