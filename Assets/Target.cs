@@ -34,6 +34,7 @@ public class Target : MonoBehaviour
 
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        piece.GetComponent<BoxCollider>().isTrigger = true;
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z);
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
         piece.AddComponent<Rigidbody>();
@@ -43,6 +44,7 @@ public class Target : MonoBehaviour
     }
     void Die()
     {
+
         Destroy(gameObject);
         for (int x = 0; x < cubesInRow; x++)
         {
@@ -56,7 +58,7 @@ public class Target : MonoBehaviour
         }
         Vector3 explosionPos = transform.position;
         //get colliders in that position and radius
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         //add explosion force to all colliders in that overlap sphere
         foreach (Collider hit in colliders)
         {
@@ -65,7 +67,7 @@ public class Target : MonoBehaviour
             if (rb != null)
             {
                 //add explosion force to this body with given parameters
-                rb.AddExplosionForce(explosionForce, transform.position + transform.right/2, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
             }
         }
     }
